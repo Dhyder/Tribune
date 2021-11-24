@@ -1,0 +1,31 @@
+{%extends 'all-news/base.html'%} 
+{% block content %}
+<div class="container">
+
+  <div class="">
+    {% if articles%}
+      <h2>Found {{ articles|length }} of searched term {{message}}</h2>
+      <br><br>
+    {% else %}
+      <h2> Found 0 articles for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if articles %}
+    {% for article in articles %}
+      <div class="col-md-9">
+              <!--Display news Article images  -->
+    <div class="col-xl-12">
+        <img style="box-shadow: 2px 2px 4px black;" src="{{article.article_image.url}}" class="img-responsive" width="50%" height="50%"alt="Image">
+      </div><br><br>
+          <h1>{{article.title}}</h1>
+          <p>{{article.post}}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
