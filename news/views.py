@@ -10,6 +10,7 @@ def welcome(request):
 def news_of_day(request):
     date = dt.date.today()
 
+    article = Article.objects.all()
     # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
     day = convert_dates(date)
     news = Article.todays_news()
@@ -27,7 +28,7 @@ def past_days_news(request,past_date):
     day = convert_dates(date)
     if date == dt.date.today():
         return redirect(news_of_day)
-    
+    article = Article.objects.all()
     news = Article.days_news(date)
     return render(request, 'all-news/past-news.html', {'date': date, 'news': news})
     
